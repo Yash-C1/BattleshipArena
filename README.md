@@ -125,8 +125,8 @@ make
 
 ## 👥 Contributors
 
-- Your Name
-- Friend’s Name
+- Vaidehi Zade
+- Yash Chaudhari
 
 ---
 
