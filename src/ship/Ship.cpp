@@ -1,69 +1,61 @@
-#include<iostream>
-using namespace std;
+#include "Ship.h"
+#include <vector>
+#include <utility>
+#include <stdexcept>
 
-class Ship{
-
-    private:
-    string name; //ship type (destroyer - 2, submarine-3, Cruiser - 4, carrier-5)
-    int size;
-    vector<pair<int,int>>positions;
-    vector<bool>hits; //
-
-    public:
-
-    Ship(string name, int size);
-    //ship where it placed(exists)
-    void place_of_ship(const vector<pair<int, int>> &positions);
-    
-    bool cellOccupied(int x,int y);
-
-    void hit_position(int x, int y);
-    bool isSunk();
-
-};
-
-Ship::Ship(string name, int size){
+// Constructor
+Ship::Ship(const std::string &name, int size, const std::string &alignment)
+{
     this->name = name;
     this->size = size;
-    
+    this->alignment = alignment;
+    // initialize hits to avoid runtime error!
+    hits.resize(size, false);
 }
-void Ship::place_of_ship(const vector<pair<int,int>> &positions){
+
+// Set ship positions
+void Ship::place_of_ship(const std::vector<std::pair<int,int>>& positions)
+{
+    if(positions.size() != static_cast<size_t>(size))
+    {
+        throw std::runtime_error("Ship placement does not match ship size!");
+    }
     this->positions = positions;
 }
 
-//check  if cell belongs to perticular ship or its water
-bool Ship::cellOccupied(int x,int y)
+// Check if cell belongs to this ship
+bool Ship::cellOccupied(int x, int y) const
 {
-    //
-    for(auto p: positions){
-        if(p.first == x && p.second == y){
+    for(const auto& p : positions)
+    {
+        if(p.first == x && p.second == y)
+        {
             return true;
         }
     }
     return false;
 }
 
-//we have to mark hit on the ship
-void Ship::hit_position(int x, int y){
-    for(int i=0; i<positions.size(); i++)
+// Mark hit on ship
+void Ship::hit_position(int x, int y)
+{
+    for(int i = 0; i < positions.size(); i++)
     {
-        if(positions[i].first == x && positions[i].second ==y)
+        if(positions[i].first == x && positions[i].second == y)
         {
-            hits[i]= true;
+            hits[i] = true;
             return;
         }
     }
 }
 
-//check if every cell is hitted of a single ship
-bool Ship::isSunk(){
-    for(bool k: hits)
+// Check if ship is sunk
+bool Ship::isSunk() const
+{
+    for(bool h : hits)
     {
-        if(k == false)
-        return false;
+        if(!h)
+            return false;
     }
     return true;
 }
-
-
-
