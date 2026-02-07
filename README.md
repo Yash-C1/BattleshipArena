@@ -115,8 +115,6 @@ battleship/
 ## 🚀 How to Run (Example)
 
 ```bash
-mkdir build && cd build
-cmake ..
 make
 ./battleship
 ```
