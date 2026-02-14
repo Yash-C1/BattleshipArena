@@ -34,6 +34,9 @@ public:
 
     // returns size of ship
     int get_size();
+
+    // returns name of ship
+    std::string get_name();
 };
 
 #endif

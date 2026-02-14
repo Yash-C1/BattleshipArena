@@ -1,4 +1,4 @@
-#include "ship.h"
+#include "ship/ship.h"
 #include <vector>
 #include <utility>
 #include <stdexcept>
@@ -61,4 +61,8 @@ bool Ship::isSunk() const
 
 int Ship::get_size() {
     return size;
+}
+
+std::string Ship::get_name() {
+    return name;
 }

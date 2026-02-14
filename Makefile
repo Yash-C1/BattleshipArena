@@ -1,13 +1,13 @@
 # Compiler
 CXX = g++
 # Compiler flags
-CXXFLAGS = -std=c++17
+CXXFLAGS = -std=c++17 -I src
 
 # Target executable
 TARGET = battleship
 
 # Source files
-SRCS = src/main.cpp src/board/board.cpp src/ship/ship.cpp src/utils/utils.cpp src/coordinate/coordinate.cpp
+SRCS = src/main.cpp src/board/board.cpp src/ship/ship.cpp src/coordinate/coordinate.cpp src/player/HumanPlayer/HumanPlayer.cpp src/player/CPUplayer/CPUplayer.cpp
 
 # Object files (replace .cpp with .o)
 OBJS = $(SRCS:.cpp=.o)
